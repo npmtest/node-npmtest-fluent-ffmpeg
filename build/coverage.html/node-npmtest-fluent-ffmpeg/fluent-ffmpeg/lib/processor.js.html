@@ -1,0 +1,2201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/processor.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-fluent-ffmpeg">npmtest-fluent-ffmpeg (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/processor.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">7.02% <small>(16 / 228)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 132)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">1.82% <small>(1 / 55)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">7.02% <small>(16 / 228)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/</a> &#187; processor.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*jshint node:true*/
+'use strict';
+&nbsp;
+var spawn = require('child_process').spawn;
+var path = require('path');
+var fs = require('fs');
+var async = require('async');
+var utils = require('./utils');
+&nbsp;
+var nlRegexp = /\r\n|\r|\n/g;
+&nbsp;
+/*
+ *! Processor methods
+ */
+&nbsp;
+&nbsp;
+/**
+ * Run ffprobe asynchronously and store data in command
+ *
+ * @param {FfmpegCommand} command
+ * @private
+ */
+<span class="fstat-no" title="function not covered" >function runFfprobe(command) {</span>
+<span class="cstat-no" title="statement not covered" >  command.ffprobe(0, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    command._ffprobeData = data;</span>
+  });
+}
+&nbsp;
+&nbsp;
+module.exports = function(proto) {
+  /**
+   * Emitted just after ffmpeg has been spawned.
+   *
+   * @event FfmpegCommand#start
+   * @param {String} command ffmpeg command line
+   */
+&nbsp;
+  /**
+   * Emitted when ffmpeg reports progress information
+   *
+   * @event FfmpegCommand#progress
+   * @param {Object} progress progress object
+   * @param {Number} progress.frames number of frames transcoded
+   * @param {Number} progress.currentFps current processing speed in frames per second
+   * @param {Number} progress.currentKbps current output generation speed in kilobytes per second
+   * @param {Number} progress.targetSize current output file size
+   * @param {String} progress.timemark current video timemark
+   * @param {Number} [progress.percent] processing progress (may not be available depending on input)
+   */
+&nbsp;
+  /**
+   * Emitted when ffmpeg outputs to stderr
+   *
+   * @event FfmpegCommand#stderr
+   * @param {String} line stderr output line
+   */
+&nbsp;
+  /**
+   * Emitted when ffmpeg reports input codec data
+   *
+   * @event FfmpegCommand#codecData
+   * @param {Object} codecData codec data object
+   * @param {String} codecData.format input format name
+   * @param {String} codecData.audio input audio codec name
+   * @param {String} codecData.audio_details input audio codec parameters
+   * @param {String} codecData.video input video codec name
+   * @param {String} codecData.video_details input video codec parameters
+   */
+&nbsp;
+  /**
+   * Emitted when an error happens when preparing or running a command
+   *
+   * @event FfmpegCommand#error
+   * @param {Error} error error object
+   * @param {String|null} stdout ffmpeg stdout, unless outputting to a stream
+   * @param {String|null} stderr ffmpeg stderr
+   */
+&nbsp;
+  /**
+   * Emitted when a command finishes processing
+   *
+   * @event FfmpegCommand#end
+   * @param {Array|String|null} [filenames|stdout] generated filenames when taking screenshots, ffmpeg stdout when not outputting to a stream, null otherwise
+   * @param {String|null} stderr ffmpeg stderr
+   */
+&nbsp;
+&nbsp;
+  /**
+   * Spawn an ffmpeg process
+   *
+   * The 'options' argument may contain the following keys:
+   * - 'niceness': specify process niceness, ignored on Windows (default: 0)
+   * - `cwd`: change working directory
+   * - 'captureStdout': capture stdout and pass it to 'endCB' as its 2nd argument (default: false)
+   * - 'stdoutLines': override command limit (default: use command limit)
+   *
+   * The 'processCB' callback, if present, is called as soon as the process is created and
+   * receives a nodejs ChildProcess object.  It may not be called at all if an error happens
+   * before spawning the process.
+   *
+   * The 'endCB' callback is called either when an error occurs or when the ffmpeg process finishes.
+   *
+   * @method FfmpegCommand#_spawnFfmpeg
+   * @param {Array} args ffmpeg command line argument list
+   * @param {Object} [options] spawn options (see above)
+   * @param {Function} [processCB] callback called with process object and stdout/stderr ring buffers when process has been created
+   * @param {Function} endCB callback called with error (if applicable) and stdout/stderr ring buffers when process finished
+   * @private
+   */
+  proto._spawnFfmpeg = <span class="fstat-no" title="function not covered" >function(args, options, processCB, endCB) {</span>
+    // Enable omitting options
+<span class="cstat-no" title="statement not covered" >    if (typeof options === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >      endCB = processCB;</span>
+<span class="cstat-no" title="statement not covered" >      processCB = options;</span>
+<span class="cstat-no" title="statement not covered" >      options = {};</span>
+    }
+&nbsp;
+    // Enable omitting processCB
+<span class="cstat-no" title="statement not covered" >    if (typeof endCB === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >      endCB = processCB;</span>
+<span class="cstat-no" title="statement not covered" >      processCB = <span class="fstat-no" title="function not covered" >function() {</span>};</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var maxLines = 'stdoutLines' in options ? options.stdoutLines : this.options.stdoutLines;</span>
+&nbsp;
+    // Find ffmpeg
+<span class="cstat-no" title="statement not covered" >    this._getFfmpegPath(<span class="fstat-no" title="function not covered" >function(err, command) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) {</span>
+<span class="cstat-no" title="statement not covered" >        return endCB(err);</span>
+      } else <span class="cstat-no" title="statement not covered" >if (!command || command.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return endCB(new Error('Cannot find ffmpeg'));</span>
+      }
+&nbsp;
+      // Apply niceness
+<span class="cstat-no" title="statement not covered" >      if (options.niceness &amp;&amp; options.niceness !== 0 &amp;&amp; !utils.isWindows) {</span>
+<span class="cstat-no" title="statement not covered" >        args.unshift('-n', options.niceness, command);</span>
+<span class="cstat-no" title="statement not covered" >        command = 'nice';</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var stdoutRing = utils.linesRing(maxLines);</span>
+<span class="cstat-no" title="statement not covered" >      var stdoutClosed = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var stderrRing = utils.linesRing(maxLines);</span>
+<span class="cstat-no" title="statement not covered" >      var stderrClosed = false;</span>
+&nbsp;
+      // Spawn process
+<span class="cstat-no" title="statement not covered" >      var ffmpegProc = spawn(command, args, options);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (ffmpegProc.stderr) {</span>
+<span class="cstat-no" title="statement not covered" >        ffmpegProc.stderr.setEncoding('utf8');</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      ffmpegProc.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >        endCB(err);</span>
+      });
+&nbsp;
+      // Ensure we wait for captured streams to end before calling endCB
+<span class="cstat-no" title="statement not covered" >      var exitError = null;</span>
+<span class="fstat-no" title="function not covered" >      function handleExit(err) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >          exitError = err;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (processExited &amp;&amp; (stdoutClosed || !options.captureStdout) &amp;&amp; stderrClosed) {</span>
+<span class="cstat-no" title="statement not covered" >          endCB(exitError, stdoutRing, stderrRing);</span>
+        }
+      }
+&nbsp;
+      // Handle process exit
+<span class="cstat-no" title="statement not covered" >      var processExited = false;</span>
+<span class="cstat-no" title="statement not covered" >      ffmpegProc.on('exit', <span class="fstat-no" title="function not covered" >function(code, signal) {</span></span>
+<span class="cstat-no" title="statement not covered" >        processExited = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (signal) {</span>
+<span class="cstat-no" title="statement not covered" >          handleExit(new Error('ffmpeg was killed with signal ' + signal));</span>
+        } else <span class="cstat-no" title="statement not covered" >if (code) {</span>
+<span class="cstat-no" title="statement not covered" >          handleExit(new Error('ffmpeg exited with code ' + code));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          handleExit();</span>
+        }
+      });
+&nbsp;
+      // Capture stdout if specified
+<span class="cstat-no" title="statement not covered" >      if (options.captureStdout) {</span>
+<span class="cstat-no" title="statement not covered" >        ffmpegProc.stdout.on('data', <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >          stdoutRing.append(data);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ffmpegProc.stdout.on('close', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          stdoutRing.close();</span>
+<span class="cstat-no" title="statement not covered" >          stdoutClosed = true;</span>
+<span class="cstat-no" title="statement not covered" >          handleExit();</span>
+        });
+      }
+&nbsp;
+      // Capture stderr if specified
+<span class="cstat-no" title="statement not covered" >      ffmpegProc.stderr.on('data', <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        stderrRing.append(data);</span>
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      ffmpegProc.stderr.on('close', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        stderrRing.close();</span>
+<span class="cstat-no" title="statement not covered" >        stderrClosed = true;</span>
+<span class="cstat-no" title="statement not covered" >        handleExit();</span>
+      });
+&nbsp;
+      // Call process callback
+<span class="cstat-no" title="statement not covered" >      processCB(ffmpegProc, stdoutRing, stderrRing);</span>
+    });
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Build the argument list for an ffmpeg command
+   *
+   * @method FfmpegCommand#_getArguments
+   * @return argument list
+   * @private
+   */
+  proto._getArguments = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var complexFilters = this._complexFilters.get();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var fileOutput = this._outputs.some(<span class="fstat-no" title="function not covered" >function(output) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return output.isFile;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return [].concat(</span>
+        // Inputs and input options
+        this._inputs.reduce(<span class="fstat-no" title="function not covered" >function(args, input) {</span>
+<span class="cstat-no" title="statement not covered" >          var source = (typeof input.source === 'string') ? input.source : 'pipe:0';</span>
+&nbsp;
+          // For each input, add input options, then '-i &lt;source&gt;'
+<span class="cstat-no" title="statement not covered" >          return args.concat(</span>
+            input.options.get(),
+            ['-i', source]
+          );
+        }, []),
+&nbsp;
+        // Global options
+        this._global.get(),
+&nbsp;
+        // Overwrite if we have file outputs
+        fileOutput ? ['-y'] : [],
+&nbsp;
+        // Complex filters
+        complexFilters,
+&nbsp;
+        // Outputs, filters and output options
+        this._outputs.reduce(<span class="fstat-no" title="function not covered" >function(args, output) {</span>
+<span class="cstat-no" title="statement not covered" >          var sizeFilters = utils.makeFilterStrings(output.sizeFilters.get());</span>
+<span class="cstat-no" title="statement not covered" >          var audioFilters = output.audioFilters.get();</span>
+<span class="cstat-no" title="statement not covered" >          var videoFilters = output.videoFilters.get().concat(sizeFilters);</span>
+<span class="cstat-no" title="statement not covered" >          var outputArg;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (!output.target) {</span>
+<span class="cstat-no" title="statement not covered" >            outputArg = [];</span>
+          } else <span class="cstat-no" title="statement not covered" >if (typeof output.target === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >            outputArg = [output.target];</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            outputArg = ['pipe:1'];</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return args.concat(</span>
+            output.audio.get(),
+            audioFilters.length ? ['-filter:a', audioFilters.join(',')] : [],
+            output.video.get(),
+            videoFilters.length ? ['-filter:v', videoFilters.join(',')] : [],
+            output.options.get(),
+            outputArg
+          );
+        }, [])
+      );
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Prepare execution of an ffmpeg command
+   *
+   * Checks prerequisites for the execution of the command (codec/format availability, flvtool...),
+   * then builds the argument list for ffmpeg and pass them to 'callback'.
+   *
+   * @method FfmpegCommand#_prepare
+   * @param {Function} callback callback with signature (err, args)
+   * @param {Boolean} [readMetadata=false] read metadata before processing
+   * @private
+   */
+  proto._prepare = <span class="fstat-no" title="function not covered" >function(callback, readMetadata) {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    async.waterfall([</span>
+      // Check codecs and formats
+<span class="fstat-no" title="function not covered" >      function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >        self._checkCapabilities(cb);</span>
+      },
+&nbsp;
+      // Read metadata if required
+<span class="fstat-no" title="function not covered" >      function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!readMetadata) {</span>
+<span class="cstat-no" title="statement not covered" >          return cb();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        self.ffprobe(0, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (!err) {</span>
+<span class="cstat-no" title="statement not covered" >            self._ffprobeData = data;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          cb();</span>
+        });
+      },
+&nbsp;
+      // Check for flvtool2/flvmeta if necessary
+<span class="fstat-no" title="function not covered" >      function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >        var flvmeta = self._outputs.some(<span class="fstat-no" title="function not covered" >function(output) {</span></span>
+          // Remove flvmeta flag on non-file output
+<span class="cstat-no" title="statement not covered" >          if (output.flags.flvmeta &amp;&amp; !output.isFile) {</span>
+<span class="cstat-no" title="statement not covered" >            self.logger.warn('Updating flv metadata is only supported for files');</span>
+<span class="cstat-no" title="statement not covered" >            output.flags.flvmeta = false;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return output.flags.flvmeta;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (flvmeta) {</span>
+<span class="cstat-no" title="statement not covered" >          self._getFlvtoolPath(<span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >            cb(err);</span>
+          });
+        } else {
+<span class="cstat-no" title="statement not covered" >          cb();</span>
+        }
+      },
+&nbsp;
+      // Build argument list
+<span class="fstat-no" title="function not covered" >      function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >        var args;</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >          args = self._getArguments();</span>
+        } catch(e) {
+<span class="cstat-no" title="statement not covered" >          return cb(e);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        cb(null, args);</span>
+      },
+&nbsp;
+      // Add "-strict experimental" option where needed
+<span class="fstat-no" title="function not covered" >      function(args, cb) {</span>
+<span class="cstat-no" title="statement not covered" >        self.availableEncoders(<span class="fstat-no" title="function not covered" >function(err, encoders) {</span></span>
+<span class="cstat-no" title="statement not covered" >          for (var i = 0; i &lt; args.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (args[i] === '-acodec' || args[i] === '-vcodec') {</span>
+<span class="cstat-no" title="statement not covered" >              i++;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              if ((args[i] in encoders) &amp;&amp; encoders[args[i]].experimental) {</span>
+<span class="cstat-no" title="statement not covered" >                args.splice(i + 1, 0, '-strict', 'experimental');</span>
+<span class="cstat-no" title="statement not covered" >                i += 2;</span>
+              }
+            }
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          cb(null, args);</span>
+        });
+      }
+    ], callback);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!readMetadata) {</span>
+      // Read metadata as soon as 'progress' listeners are added
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (this.listeners('progress').length &gt; 0) {</span>
+        // Read metadata in parallel
+<span class="cstat-no" title="statement not covered" >        runFfprobe(this);</span>
+      } else {
+        // Read metadata as soon as the first 'progress' listener is added
+<span class="cstat-no" title="statement not covered" >        this.once('newListener', <span class="fstat-no" title="function not covered" >function(event) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (event === 'progress') {</span>
+<span class="cstat-no" title="statement not covered" >            runFfprobe(this);</span>
+          }
+        });
+      }
+    }
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Run ffmpeg command
+   *
+   * @method FfmpegCommand#run
+   * @category Processing
+   * @aliases exec,execute
+   */
+  proto.exec =
+  proto.execute =
+  proto.run = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+    // Check if at least one output is present
+<span class="cstat-no" title="statement not covered" >    var outputPresent = this._outputs.some(<span class="fstat-no" title="function not covered" >function(output) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return 'target' in output;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!outputPresent) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('No output specified');</span>
+    }
+&nbsp;
+    // Get output stream if any
+<span class="cstat-no" title="statement not covered" >    var outputStream = this._outputs.filter(<span class="fstat-no" title="function not covered" >function(output) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return typeof output.target !== 'string';</span>
+    })[0];
+&nbsp;
+    // Get input stream if any
+<span class="cstat-no" title="statement not covered" >    var inputStream = this._inputs.filter(<span class="fstat-no" title="function not covered" >function(input) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return typeof input.source !== 'string';</span>
+    })[0];
+&nbsp;
+    // Ensure we send 'end' or 'error' only once
+<span class="cstat-no" title="statement not covered" >    var ended = false;</span>
+<span class="fstat-no" title="function not covered" >    function emitEnd(err, stdout, stderr) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!ended) {</span>
+<span class="cstat-no" title="statement not covered" >        ended = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >          self.emit('error', err, stdout, stderr);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          self.emit('end', stdout, stderr);</span>
+        }
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    self._prepare(<span class="fstat-no" title="function not covered" >function(err, args) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) {</span>
+<span class="cstat-no" title="statement not covered" >        return emitEnd(err);</span>
+      }
+&nbsp;
+      // Run ffmpeg
+<span class="cstat-no" title="statement not covered" >      self._spawnFfmpeg(</span>
+        args,
+        {
+          captureStdout: !outputStream,
+          niceness: self.options.niceness,
+          cwd: self.options.cwd
+        },
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function processCB(ffmpegProc, stdoutRing, stderrRing) {</span>
+<span class="cstat-no" title="statement not covered" >          self.ffmpegProc = ffmpegProc;</span>
+<span class="cstat-no" title="statement not covered" >          self.emit('start', 'ffmpeg ' + args.join(' '));</span>
+&nbsp;
+          // Pipe input stream if any
+<span class="cstat-no" title="statement not covered" >          if (inputStream) {</span>
+<span class="cstat-no" title="statement not covered" >            inputStream.source.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >              emitEnd(new Error('Input stream error: ' + err.message));</span>
+<span class="cstat-no" title="statement not covered" >              ffmpegProc.kill();</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            inputStream.source.resume();</span>
+<span class="cstat-no" title="statement not covered" >            inputStream.source.pipe(ffmpegProc.stdin);</span>
+&nbsp;
+            // Set stdin error handler on ffmpeg (prevents nodejs catching the error, but
+            // ffmpeg will fail anyway, so no need to actually handle anything)
+<span class="cstat-no" title="statement not covered" >            ffmpegProc.stdin.on('error', <span class="fstat-no" title="function not covered" >function() {</span>});</span>
+          }
+&nbsp;
+          // Setup timeout if requested
+<span class="cstat-no" title="statement not covered" >          var processTimer;</span>
+<span class="cstat-no" title="statement not covered" >          if (self.options.timeout) {</span>
+<span class="cstat-no" title="statement not covered" >            processTimer = setTimeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >              var msg = 'process ran into a timeout (' + self.options.timeout + 's)';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              emitEnd(new Error(msg), stdoutRing.get(), stderrRing.get());</span>
+<span class="cstat-no" title="statement not covered" >              ffmpegProc.kill();</span>
+            }, self.options.timeout * 1000);
+          }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (outputStream) {</span>
+            // Pipe ffmpeg stdout to output stream
+<span class="cstat-no" title="statement not covered" >            ffmpegProc.stdout.pipe(outputStream.target, outputStream.pipeopts);</span>
+&nbsp;
+            // Handle output stream events
+<span class="cstat-no" title="statement not covered" >            outputStream.target.on('close', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >              self.logger.debug('Output stream closed, scheduling kill for ffmpgeg process');</span>
+&nbsp;
+              // Don't kill process yet, to give a chance to ffmpeg to
+              // terminate successfully first  This is necessary because
+              // under load, the process 'exit' event sometimes happens
+              // after the output stream 'close' event.
+<span class="cstat-no" title="statement not covered" >              setTimeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                emitEnd(new Error('Output stream closed'));</span>
+<span class="cstat-no" title="statement not covered" >                ffmpegProc.kill();</span>
+              }, 20);
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            outputStream.target.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >              self.logger.debug('Output stream error, killing ffmpgeg process');</span>
+<span class="cstat-no" title="statement not covered" >              emitEnd(new Error('Output stream error: ' + err.message), stdoutRing.get(), stderrRing.get());</span>
+<span class="cstat-no" title="statement not covered" >              ffmpegProc.kill();</span>
+            });
+          }
+&nbsp;
+          // Setup stderr handling
+<span class="cstat-no" title="statement not covered" >          if (stderrRing) {</span>
+&nbsp;
+            // 'stderr' event
+<span class="cstat-no" title="statement not covered" >            if (self.listeners('stderr').length) {</span>
+<span class="cstat-no" title="statement not covered" >              stderrRing.callback(<span class="fstat-no" title="function not covered" >function(line) {</span></span>
+<span class="cstat-no" title="statement not covered" >                self.emit('stderr', line);</span>
+              });
+            }
+&nbsp;
+            // 'codecData' event
+<span class="cstat-no" title="statement not covered" >            if (self.listeners('codecData').length) {</span>
+<span class="cstat-no" title="statement not covered" >              var codecDataSent = false;</span>
+<span class="cstat-no" title="statement not covered" >              var codecObject = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              stderrRing.callback(<span class="fstat-no" title="function not covered" >function(line) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!codecDataSent)</span>
+<span class="cstat-no" title="statement not covered" >                  codecDataSent = utils.extractCodecData(self, line, codecObject);</span>
+              });
+            }
+&nbsp;
+            // 'progress' event
+<span class="cstat-no" title="statement not covered" >            if (self.listeners('progress').length) {</span>
+<span class="cstat-no" title="statement not covered" >              var duration = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              if (self._ffprobeData &amp;&amp; self._ffprobeData.format &amp;&amp; self._ffprobeData.format.duration) {</span>
+<span class="cstat-no" title="statement not covered" >                duration = Number(self._ffprobeData.format.duration);</span>
+              }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              stderrRing.callback(<span class="fstat-no" title="function not covered" >function(line) {</span></span>
+<span class="cstat-no" title="statement not covered" >                utils.extractProgress(self, line, duration);</span>
+              });
+            }
+          }
+        },
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function endCB(err, stdoutRing, stderrRing) {</span>
+<span class="cstat-no" title="statement not covered" >          delete self.ffmpegProc;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            if (err.message.match(/ffmpeg exited with code/)) {</span>
+              // Add ffmpeg error message
+<span class="cstat-no" title="statement not covered" >              err.message += ': ' + utils.extractError(stderrRing.get());</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            emitEnd(err, stdoutRing.get(), stderrRing.get());</span>
+          } else {
+            // Find out which outputs need flv metadata
+<span class="cstat-no" title="statement not covered" >            var flvmeta = self._outputs.filter(<span class="fstat-no" title="function not covered" >function(output) {</span></span>
+<span class="cstat-no" title="statement not covered" >              return output.flags.flvmeta;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (flvmeta.length) {</span>
+<span class="cstat-no" title="statement not covered" >              self._getFlvtoolPath(<span class="fstat-no" title="function not covered" >function(err, flvtool) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                  return emitEnd(err);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                async.each(</span>
+                  flvmeta,
+<span class="fstat-no" title="function not covered" >                  function(output, cb) {</span>
+<span class="cstat-no" title="statement not covered" >                    spawn(flvtool, ['-U', output.target])</span>
+                      .on('error', <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >                        cb(new Error('Error running ' + flvtool + ' on ' + output.target + ': ' + err.message));</span>
+                      })
+                      .on('exit', <span class="fstat-no" title="function not covered" >function(code, signal) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (code !== 0 || signal) {</span>
+<span class="cstat-no" title="statement not covered" >                          cb(</span>
+                            new Error(flvtool + ' ' +
+                              (signal ? 'received signal ' + signal
+                                      : 'exited with code ' + code)) +
+                              ' when running on ' + output.target
+                          );
+                        } else {
+<span class="cstat-no" title="statement not covered" >                          cb();</span>
+                        }
+                      });
+                  },
+<span class="fstat-no" title="function not covered" >                  function(err) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                      emitEnd(err);</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                      emitEnd(null, stdoutRing.get(), stderrRing.get());</span>
+                    }
+                  }
+                );
+              });
+            } else {
+<span class="cstat-no" title="statement not covered" >              emitEnd(null, stdoutRing.get(), stderrRing.get());</span>
+            }
+          }
+        }
+      );
+    });
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Renice current and/or future ffmpeg processes
+   *
+   * Ignored on Windows platforms.
+   *
+   * @method FfmpegCommand#renice
+   * @category Processing
+   *
+   * @param {Number} [niceness=0] niceness value between -20 (highest priority) and 20 (lowest priority)
+   * @return FfmpegCommand
+   */
+  proto.renice = <span class="fstat-no" title="function not covered" >function(niceness) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!utils.isWindows) {</span>
+<span class="cstat-no" title="statement not covered" >      niceness = niceness || 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (niceness &lt; -20 || niceness &gt; 20) {</span>
+<span class="cstat-no" title="statement not covered" >        this.logger.warn('Invalid niceness value: ' + niceness + ', must be between -20 and 20');</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      niceness = Math.min(20, Math.max(-20, niceness));</span>
+<span class="cstat-no" title="statement not covered" >      this.options.niceness = niceness;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (this.ffmpegProc) {</span>
+<span class="cstat-no" title="statement not covered" >        var logger = this.logger;</span>
+<span class="cstat-no" title="statement not covered" >        var pid = this.ffmpegProc.pid;</span>
+<span class="cstat-no" title="statement not covered" >        var renice = spawn('renice', [niceness, '-p', pid]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        renice.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >          logger.warn('could not renice process ' + pid + ': ' + err.message);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        renice.on('exit', <span class="fstat-no" title="function not covered" >function(code, signal) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (signal) {</span>
+<span class="cstat-no" title="statement not covered" >            logger.warn('could not renice process ' + pid + ': renice was killed by signal ' + signal);</span>
+          } else <span class="cstat-no" title="statement not covered" >if (code) {</span>
+<span class="cstat-no" title="statement not covered" >            logger.warn('could not renice process ' + pid + ': renice exited with ' + code);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            logger.info('successfully reniced process ' + pid + ' to ' + niceness + ' niceness');</span>
+          }
+        });
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Kill current ffmpeg process, if any
+   *
+   * @method FfmpegCommand#kill
+   * @category Processing
+   *
+   * @param {String} [signal=SIGKILL] signal name
+   * @return FfmpegCommand
+   */
+  proto.kill = <span class="fstat-no" title="function not covered" >function(signal) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.ffmpegProc) {</span>
+<span class="cstat-no" title="statement not covered" >      this.logger.warn('No running ffmpeg process, cannot send signal');</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.ffmpegProc.kill(signal || 'SIGKILL');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  };
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 10:44:02 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>

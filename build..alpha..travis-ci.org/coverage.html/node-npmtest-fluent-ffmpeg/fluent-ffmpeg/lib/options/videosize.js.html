@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/options/videosize.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-fluent-ffmpeg">npmtest-fluent-ffmpeg (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/options/videosize.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">10.94% <small>(7 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">14.29% <small>(1 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">10.94% <small>(7 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-fluent-ffmpeg/fluent-ffmpeg/lib/options/</a> &#187; videosize.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*jshint node:true*/
+'use strict';
+&nbsp;
+/*
+ *! Size helpers
+ */
+&nbsp;
+&nbsp;
+/**
+ * Return filters to pad video to width*height,
+ *
+ * @param {Number} width output width
+ * @param {Number} height output height
+ * @param {Number} aspect video aspect ratio (without padding)
+ * @param {Number} color padding color
+ * @return scale/pad filters
+ * @private
+ */
+<span class="fstat-no" title="function not covered" >function getScalePadFilters(width, height, aspect, color) {</span>
+  /*
+    let a be the input aspect ratio, A be the requested aspect ratio
+&nbsp;
+    if a &gt; A, padding is done on top and bottom
+    if a &lt; A, padding is done on left and right
+   */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return [</span>
+    /*
+      In both cases, we first have to scale the input to match the requested size.
+      When using computed width/height, we truncate them to multiples of 2
+     */
+    {
+      filter: 'scale',
+      options: {
+        w: 'if(gt(a,' + aspect + '),' + width + ',trunc(' + height + '*a/2)*2)',
+        h: 'if(lt(a,' + aspect + '),' + height + ',trunc(' + width + '/a/2)*2)'
+      }
+    },
+&nbsp;
+    /*
+      Then we pad the scaled input to match the target size
+      (here iw and ih refer to the padding input, i.e the scaled output)
+     */
+&nbsp;
+    {
+      filter: 'pad',
+      options: {
+        w: width,
+        h: height,
+        x: 'if(gt(a,' + aspect + '),0,(' + width + '-iw)/2)',
+        y: 'if(lt(a,' + aspect + '),0,(' + height + '-ih)/2)',
+        color: color
+      }
+    }
+  ];
+}
+&nbsp;
+&nbsp;
+/**
+ * Recompute size filters
+ *
+ * @param {Object} output
+ * @param {String} key newly-added parameter name ('size', 'aspect' or 'pad')
+ * @param {String} value newly-added parameter value
+ * @return filter string array
+ * @private
+ */
+<span class="fstat-no" title="function not covered" >function createSizeFilters(output, key, value) {</span>
+  // Store parameters
+<span class="cstat-no" title="statement not covered" >  var data = output.sizeData = output.sizeData || {};</span>
+<span class="cstat-no" title="statement not covered" >  data[key] = value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!('size' in data)) {</span>
+    // No size requested, keep original size
+<span class="cstat-no" title="statement not covered" >    return [];</span>
+  }
+&nbsp;
+  // Try to match the different size string formats
+<span class="cstat-no" title="statement not covered" >  var fixedSize = data.size.match(/([0-9]+)x([0-9]+)/);</span>
+<span class="cstat-no" title="statement not covered" >  var fixedWidth = data.size.match(/([0-9]+)x\?/);</span>
+<span class="cstat-no" title="statement not covered" >  var fixedHeight = data.size.match(/\?x([0-9]+)/);</span>
+<span class="cstat-no" title="statement not covered" >  var percentRatio = data.size.match(/\b([0-9]{1,3})%/);</span>
+<span class="cstat-no" title="statement not covered" >  var width, height, aspect;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (percentRatio) {</span>
+<span class="cstat-no" title="statement not covered" >    var ratio = Number(percentRatio[1]) / 100;</span>
+<span class="cstat-no" title="statement not covered" >    return [{</span>
+      filter: 'scale',
+      options: {
+        w: 'trunc(iw*' + ratio + '/2)*2',
+        h: 'trunc(ih*' + ratio + '/2)*2'
+      }
+    }];
+  } else <span class="cstat-no" title="statement not covered" >if (fixedSize) {</span>
+    // Round target size to multiples of 2
+<span class="cstat-no" title="statement not covered" >    width = Math.round(Number(fixedSize[1]) / 2) * 2;</span>
+<span class="cstat-no" title="statement not covered" >    height = Math.round(Number(fixedSize[2]) / 2) * 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    aspect = width / height;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (data.pad) {</span>
+<span class="cstat-no" title="statement not covered" >      return getScalePadFilters(width, height, aspect, data.pad);</span>
+    } else {
+      // No autopad requested, rescale to target size
+<span class="cstat-no" title="statement not covered" >      return [{ filter: 'scale', options: { w: width, h: height }}];</span>
+    }
+  } else <span class="cstat-no" title="statement not covered" >if (fixedWidth || fixedHeight) {</span>
+<span class="cstat-no" title="statement not covered" >    if ('aspect' in data) {</span>
+      // Specified aspect ratio
+<span class="cstat-no" title="statement not covered" >      width = fixedWidth ? fixedWidth[1] : Math.round(Number(fixedHeight[1]) * data.aspect);</span>
+<span class="cstat-no" title="statement not covered" >      height = fixedHeight ? fixedHeight[1] : Math.round(Number(fixedWidth[1]) / data.aspect);</span>
+&nbsp;
+      // Round to multiples of 2
+<span class="cstat-no" title="statement not covered" >      width = Math.round(width / 2) * 2;</span>
+<span class="cstat-no" title="statement not covered" >      height = Math.round(height / 2) * 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.pad) {</span>
+<span class="cstat-no" title="statement not covered" >        return getScalePadFilters(width, height, data.aspect, data.pad);</span>
+      } else {
+        // No autopad requested, rescale to target size
+<span class="cstat-no" title="statement not covered" >        return [{ filter: 'scale', options: { w: width, h: height }}];</span>
+      }
+    } else {
+      // Keep input aspect ratio
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (fixedWidth) {</span>
+<span class="cstat-no" title="statement not covered" >        return [{</span>
+          filter: 'scale',
+          options: {
+            w: Math.round(Number(fixedWidth[1]) / 2) * 2,
+            h: 'trunc(ow/a/2)*2'
+          }
+        }];
+      } else {
+<span class="cstat-no" title="statement not covered" >        return [{</span>
+          filter: 'scale',
+          options: {
+            w: 'trunc(oh*a/2)*2',
+            h: Math.round(Number(fixedHeight[1]) / 2) * 2
+          }
+        }];
+      }
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    throw new Error('Invalid size specified: ' + data.size);</span>
+  }
+}
+&nbsp;
+&nbsp;
+/*
+ *! Video size-related methods
+ */
+&nbsp;
+module.exports = function(proto) {
+  /**
+   * Keep display aspect ratio
+   *
+   * This method is useful when converting an input with non-square pixels to an output format
+   * that does not support non-square pixels.  It rescales the input so that the display aspect
+   * ratio is the same.
+   *
+   * @method FfmpegCommand#keepDAR
+   * @category Video size
+   * @aliases keepPixelAspect,keepDisplayAspect,keepDisplayAspectRatio
+   *
+   * @return FfmpegCommand
+   */
+  proto.keepPixelAspect = // Only for compatibility, this is not about keeping _pixel_ aspect ratio
+  proto.keepDisplayAspect =
+  proto.keepDisplayAspectRatio =
+  proto.keepDAR = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.videoFilters([</span>
+      {
+        filter: 'scale',
+        options: {
+          w: 'if(gt(sar,1),iw*sar,iw)',
+          h: 'if(lt(sar,1),ih/sar,ih)'
+        }
+      },
+      {
+        filter: 'setsar',
+        options: '1'
+      }
+    ]);
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Set output size
+   *
+   * The 'size' parameter can have one of 4 forms:
+   * - 'X%': rescale to xx % of the original size
+   * - 'WxH': specify width and height
+   * - 'Wx?': specify width and compute height from input aspect ratio
+   * - '?xH': specify height and compute width from input aspect ratio
+   *
+   * Note: both dimensions will be truncated to multiples of 2.
+   *
+   * @method FfmpegCommand#size
+   * @category Video size
+   * @aliases withSize,setSize
+   *
+   * @param {String} size size string, eg. '33%', '320x240', '320x?', '?x240'
+   * @return FfmpegCommand
+   */
+  proto.withSize =
+  proto.setSize =
+  proto.size = <span class="fstat-no" title="function not covered" >function(size) {</span>
+<span class="cstat-no" title="statement not covered" >    var filters = createSizeFilters(this._currentOutput, 'size', size);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters.clear();</span>
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters(filters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Set output aspect ratio
+   *
+   * @method FfmpegCommand#aspect
+   * @category Video size
+   * @aliases withAspect,withAspectRatio,setAspect,setAspectRatio,aspectRatio
+   *
+   * @param {String|Number} aspect aspect ratio (number or 'X:Y' string)
+   * @return FfmpegCommand
+   */
+  proto.withAspect =
+  proto.withAspectRatio =
+  proto.setAspect =
+  proto.setAspectRatio =
+  proto.aspect =
+  proto.aspectRatio = <span class="fstat-no" title="function not covered" >function(aspect) {</span>
+<span class="cstat-no" title="statement not covered" >    var a = Number(aspect);</span>
+<span class="cstat-no" title="statement not covered" >    if (isNaN(a)) {</span>
+<span class="cstat-no" title="statement not covered" >      var match = aspect.match(/^(\d+):(\d+)$/);</span>
+<span class="cstat-no" title="statement not covered" >      if (match) {</span>
+<span class="cstat-no" title="statement not covered" >        a = Number(match[1]) / Number(match[2]);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid aspect ratio: ' + aspect);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var filters = createSizeFilters(this._currentOutput, 'aspect', a);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters.clear();</span>
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters(filters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  };
+&nbsp;
+&nbsp;
+  /**
+   * Enable auto-padding the output
+   *
+   * @method FfmpegCommand#autopad
+   * @category Video size
+   * @aliases applyAutopadding,applyAutoPadding,applyAutopad,applyAutoPad,withAutopadding,withAutoPadding,withAutopad,withAutoPad,autoPad
+   *
+   * @param {Boolean} [pad=true] enable/disable auto-padding
+   * @param {String} [color='black'] pad color
+   */
+  proto.applyAutopadding =
+  proto.applyAutoPadding =
+  proto.applyAutopad =
+  proto.applyAutoPad =
+  proto.withAutopadding =
+  proto.withAutoPadding =
+  proto.withAutopad =
+  proto.withAutoPad =
+  proto.autoPad =
+  proto.autopad = <span class="fstat-no" title="function not covered" >function(pad, color) {</span>
+    // Allow autopad(color)
+<span class="cstat-no" title="statement not covered" >    if (typeof pad === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >      color = pad;</span>
+<span class="cstat-no" title="statement not covered" >      pad = true;</span>
+    }
+&nbsp;
+    // Allow autopad() and autopad(undefined, color)
+<span class="cstat-no" title="statement not covered" >    if (typeof pad === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >      pad = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var filters = createSizeFilters(this._currentOutput, 'pad', pad ? color || 'black' : false);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters.clear();</span>
+<span class="cstat-no" title="statement not covered" >    this._currentOutput.sizeFilters(filters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  };
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 10:44:02 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
